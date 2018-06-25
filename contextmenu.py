@@ -16,4 +16,20 @@ class Example(QMainWindow):
         self.show()
 
     def contextMenuEvent(self, event):
-        pass
+
+        cmenu = QMenu(self)
+
+        newAct = cmenu.addAction("New")
+        opnAct = cmenu.addAction("Open")
+        quitAct = cmenu.addAction("Quit")
+        action = cmenu.exec_(self.mapToGlobal(event.pos()))
+
+        if action == quitAct:
+            qApp.quit()
+
+
+if __name__ == '__main__':
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
