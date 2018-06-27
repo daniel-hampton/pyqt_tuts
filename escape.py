@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtGui import QKeyEvent
 
 
 class Example(QWidget):
@@ -11,4 +12,20 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
-        pass
+
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('Event handler')
+        self.show()
+
+    def keyPressEvent(self, e: QKeyEvent):
+
+        if e.key() == Qt.Key_Escape:
+            self.close()
+
+
+if __name__ == '__main__':
+
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
